@@ -34,3 +34,326 @@ img{
   max-width: 1280px;
   margin: 0 auto;
 }
+
+.btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .6rem 1.1rem;
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: #ffb700;
+  color: #222;
+  font-weight: bold;
+}
+
+.btn_box{
+  display: flex;
+  gap: .5rem;
+}
+
+.btn_box.full,
+.btn_box.full .btn{
+  width: 100%;
+}
+
+/* 헤더 */
+
+header{
+  width: 100%;
+  height: 70px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background-color: #fff;
+  box-shadow: 0 0 3rem #0001;
+}
+
+header .wrap{
+  height: 100%;
+}
+
+header .logo_box,
+header .utility{
+  width: 300px;
+}
+
+header .menu_nav a{
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1.5rem;
+  transition: .2s;
+}
+
+header .menu_nav a:hover{
+  background-color: #ffb7006f;
+}
+
+/* 비주얼 영역 작업 */
+
+.visual{
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  padding-top: 70px;
+}
+
+.visual img{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.visual .text_box{
+  position: relative;
+  z-index: 10;
+  padding: 60px;
+  background-color: #0008;
+  backdrop-filter: blur(4px);
+}
+
+.visual .text_box h1{
+  color: #fff;
+  font-size: 2.5rem;
+  word-spacing: -2px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.visual .text_box h1 span{
+  color: #ffb700;
+}
+
+.visual .text_box .line{
+  width: 100px;
+  height: 4px;
+  background-color: #ffb700;
+  margin: 1rem 0;
+}
+
+.visual .text_box p{
+  text-align: center;
+  color: #fff;
+  line-height: 1.5;
+}
+
+.visual .img_box img{
+  animation: visual_animation 12s infinite;
+}
+
+.visual .img_box img:nth-child(1){z-index: 3;}
+.visual .img_box img:nth-child(2){z-index: 2; animation-delay: 4s;}
+.visual .img_box img:nth-child(3){z-index: 1; animation-delay: 8s;}
+
+@keyframes visual_animation {
+  0%, 25% {opacity: 1;}
+  33%, 91.77% {opacity: 0;}
+  100%{opacity: 1;}
+}
+
+/* visual progress */
+
+.visual .progress{
+  position: relative;
+  margin-top: 2rem;
+}
+
+.visual .progress > div{
+  width: 150px;
+  height: 5px;
+  border-radius: 2px;
+  background-color: #fff5;
+}
+
+.visual .progress > .fill{
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  animation: visual_progress 4s infinite linear;
+}
+
+@keyframes visual_progress {
+  0%{width: 0;}
+  75%, 100%{width: 150px;}
+}
+
+/* VISUAL HOVER STOP */
+
+.visual:hover img,
+.visual:hover .progress > .fill{
+  animation-play-state: paused;
+}
+
+/* 콘텐츠 */
+
+.content > div{
+  padding: 150px 0;
+}
+
+.title{
+  margin-bottom: 2rem;
+}
+
+.title h1{
+  font-size: 2.4rem;
+  font-weight: bold;
+  letter-spacing: -5px;
+  line-height: 1;
+  text-shadow: 0 1px #000;
+}
+
+.title .line{
+  width: 100px;
+  height: 4px;
+  background-color: #ffb700;
+  margin: 1rem 0;
+}
+
+.title p{
+  color: gray;
+  line-height: 1;
+}
+
+.introduce{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.introduce .item{
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 1rem #0001;
+}
+
+.introduce .item > img{
+  height: 250px;
+  animation: 2s image_scale infinite;
+}
+
+@keyframes image_scale {
+  0%, 10%{transform: scale(1);}
+  20%, 30%{transform: scale(.9);}
+  40%, 100%{transform: scale(1);}
+}
+
+.introduce .item .text_box{
+  padding: 3rem;
+  gap: 1rem;
+}
+
+.introduce .item .text_box h2{
+  font-size: 1.8rem;
+  text-shadow: 1px 0px #000;
+  letter-spacing: -3px;
+  line-height: 1;
+}
+
+.introduce .item .text_box p{
+  color: gray;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.introduce .item .text_box a{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  color: #ffb700;
+}
+
+.introduce .item .text_box a img{
+  height: 15px;
+}
+
+/* 천안 명소 */
+
+.attraction{
+  height: 400px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.attraction .container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc((308px * 12) + (1rem * 11));
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+  animation: attraction 27s infinite;
+}
+
+.attraction .item{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 400px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.attraction .text_box{
+  width: 90%;
+  max-height: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 0px 40px;
+  transform: translate(-50%, -50%);
+  background-color: #0008;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  transition: .4s;
+  overflow: hidden;
+}
+
+.attraction .text_box h1{
+  position: relative;
+  z-index: 10;
+  color: #ffb700;
+  margin-top: 60px;
+  line-height: 1;
+}
+
+.attraction .text_box p{
+  position: relative;
+  z-index: 10;
+  color: #fff;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.attraction .text_box .btn{
+  margin-bottom: 60px;
+}
+
+.attraction .item:hover .text_box{
+  max-height: 400px;
+}
+
+@keyframes attraction {
+  0%, 7.4% {left: calc(-324px * 0);}
+  11.10%, 18.5% {left: calc(-324px * 1);}
+  22.20%, 29.6% {left: calc(-324px * 2);}
+  33.30%, 40.7% {left: calc(-324px * 3);}
+  44.40%, 51.8% {left: calc(-324px * 4);}
+  55.51%, 62.9% {left: calc(-324px * 5);}
+  66.61%, 74.01% {left: calc(-324px * 6);}
+  77.72%, 85.12% {left: calc(-324px * 7);}
+  88.81%, 96.22% {left: calc(-324px * 8);}
+  100%{left: calc(-324px * 0);}
+}
+
