@@ -36,7 +36,7 @@ img{
 }
 
 .btn{
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   padding: .6rem 1.1rem;
@@ -664,4 +664,138 @@ footer p{
 .bus .bottom > .text_box p{
   margin-top: 1rem;
   line-height: 1.5;
+}
+
+.maps{
+  min-width: 700px;
+  min-height: 700px;
+  position: relative;
+  overflow: hidden;
+}
+
+.maps > div{
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform .4s, transform-origin 0s;
+}
+
+.maps #info{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: absolute;
+  z-index: 20;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #d1d1d1;
+}
+
+#map1{width: 700px; height: 700px;}
+#map2{width: 1400px; height: 1400px;}
+#map3{width: 2800px; height: 2800px;}
+
+.input_box{
+  width: 100%;
+  display: flex; 
+  align-items: center;
+  padding: 0 20px;
+  border-radius: 5px;
+  background-color: #ffb7002f;
+}
+
+.input_box label{
+  color: gray;
+  white-space: nowrap;
+  margin-right: 20px;
+  padding-right: 20px;
+  border-right: 1px solid #d1d1d1;
+}
+
+.input_box input,
+.input_box select{
+  width: 100%;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  font-family: initial;
+  letter-spacing: -1px;
+}
+
+select:focus,
+input:focus{
+  outline: none;
+}
+
+.mapCon{
+  gap: 1rem;
+}
+
+.mapCon .list{
+  width: 100%;
+  gap: 1rem;
+}
+
+.mapCon .sort_box{
+  width: 100%;
+  gap: 1rem;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th{
+  height: 45px;
+  background-color: #ffb700;
+  color: #222;
+  border: 1px solid #d1d1d1;
+}
+
+table td{
+  height: 45px;
+  border: 1px solid #d1d1d1;
+  text-align: center;
+}
+
+.maps{
+  width: 700px;
+  height: 700px;
+  position: relative;
+}
+
+.maps > div{
+  position: relative;
+}
+
+.maps canvas{
+  position: absolute;
+}
+
+.btn.tomato{
+  background-color: tomato;
+  color: #fff;
+}
+
+.mapCon .list .util{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .5rem;
+}
+
+.mapCon .mapZoom{
+  background-color: #e2e2e2;
+  color: gray;
+}
+
+.mapCon .mapZoom.chk{
+  background-color: #ffb700;
+  color: #222;
+}
+
+.mapCon #main_map{
+  transition: transform .4s, transform-origin 0s;
 }
