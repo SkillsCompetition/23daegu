@@ -79,6 +79,8 @@
               <div class="btn" onclick="Map.download()">다운로드</div>
             </div>
 
+            <div class="btn" onclick="Favorite.open()">즐겨찾기</div>
+
             <table>
               <thead>
                 <tr>
@@ -100,6 +102,37 @@
   </div>
 
   <canvas id="download" width="700" height="700" hidden></canvas>
+
+  <div class="modal"></div>
+
+  <template>
+
+    <div class="favorite_modal">
+      <div class="flex jcsb aic">
+        <h3>즐겨찾기</h3>
+        <div class="btn tomato" onclick="Modal.close()">닫기</div>
+      </div>
+
+      <hr>
+
+      <div class="inputs favorite">
+
+        <div class="label_box flex">
+
+        </div>
+
+        <div class="flex jcc aic">
+          <canvas id="favorite" height="700" width="800"></canvas>
+        </div>
+
+        <div class="vertex flex">
+          
+        </div>
+
+      </div>
+    </div>
+
+  </template>
 
   <!-- 푸터 -->
   <footer>

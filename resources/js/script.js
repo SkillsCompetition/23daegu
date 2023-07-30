@@ -3,11 +3,16 @@ const dd = console.log;
 const App = {
 
   init(){
+    App.hook();
+
     Map.init();
+    Favorite.init();
   },
 
   hook(){
-
+    $(document)
+      .on("click", ".modal .vertex div", Favorite.changeVertex)
+      .on("click", ".modal .favorite .label_box div", Favorite.changeAttraction)
   }
 
 }
@@ -27,6 +32,7 @@ const Map = {
     
     await Map.loadData();
     Map.marker.settingInitData();
+    Map.marker.list = [...Map.marker.initData]
 
     Map.settingMapData().then(res => {
       Map.reDrawAll();
@@ -150,8 +156,6 @@ const Map = {
     other(){
       if(!this.onMouse) return;
 
-      dd(123);
-
       this.onMouse = false;
       Map.nowPos = [...this.lastPos]
     },
@@ -178,8 +182,6 @@ const Map = {
           pos,
         }
       });
-
-      this.list = [...this.initData];
     },
 
     setMarker(list = this.list){
@@ -416,6 +418,11 @@ const Map = {
             (Map.marker.user.latitude - 36.6208)/Map.marker.maxLat
           ];
 
+          Map.list.data = res.data;
+          Map.marker.settingInitData();
+
+          Favorite.ko = res.labels_kr;
+          Favorite.en = res.labels_en;
         });
     }, 1000)
 
@@ -427,6 +434,9 @@ const Map = {
       ];
       
       Map.list.data = res.data;
+
+      Favorite.ko = res.labels_kr;
+      Favorite.en = res.labels_en;
 
       return res.data;
     });
@@ -453,6 +463,195 @@ const Map = {
     a.remove();
   }
 
+}
+
+const Favorite = {
+  vertex : 6,
+  data : [],
+  nowSelect : 0,
+  ctx : null,
+
+  init(){
+    setInterval(() => {
+      Favorite.loadData();
+      if($(".favorite")[0]) Favorite.reDraw();
+    }, 500)
+  },
+
+  loadData(){
+    Favorite.data = Map.list.added.map(v => {
+      return Map.list.data[v.idx];
+    })
+  },
+
+  open(){
+    Modal.open("favorite");
+
+    Favorite.vertex = 6;
+
+    Favorite.setAttractionList();
+    Favorite.setVertexList();
+
+    Favorite.reDraw();
+  },
+
+  setAttractionList(){
+    $(".favorite_modal .label_box").html(Favorite.data.map((v, i) => {
+      return `
+        <div ${i == 0 ? "class='chk'" : ""}>
+          ${v.name}
+        </div>
+      `
+    }));
+  },
+
+  setVertexList(){
+    $(".favorite_modal .vertex").html(Favorite.ko.map(v => {
+      return `
+        <div class="chk">
+          ${v}
+        </div>
+      `
+    }));
+  },
+
+  drawLine(){
+    const canvas = $("#favorite")[0];
+    const ctx = canvas.getContext('2d');
+
+    ctx.clearRect(0, 0, 700, 700)
+
+    const deg = 360/Favorite.vertex;
+    const radiusSplit = 300/5;
+    
+    for(let j = 0; j <= 5; j++){
+      const line = new Path2D()
+      for(let i = 0; i <= Favorite.vertex; i++){
+        const [x, y] = [
+          Math.cos(radian(deg * i)) * (j * radiusSplit) + 400,
+          Math.sin(radian(deg * i)) * (j * radiusSplit) + 350
+        ]
+
+        if(i == 0){
+          line.moveTo(x, y);
+        }else line.lineTo(x, y)
+      }
+
+      ctx.strokeStyle = "#d1d1d1";
+      ctx.stroke(line);
+    }
+  },
+
+  drawText(){
+    const canvas = $("#favorite")[0];
+    const ctx = canvas.getContext('2d');
+
+    const checked = $(".vertex .chk");
+    const deg = 360/Favorite.vertex;
+
+    checked.each(function(i){
+      const [x, y] = [
+        Math.cos(radian(deg * i)) * 340 + 400,
+        Math.sin(radian(deg * i)) * 330 + 350
+      ]
+
+      ctx.fillStyle = "#000"
+      ctx.font = "15px sans"
+      ctx.textAlign = "center";
+      ctx.fillText($(this).text(), x, y);
+    })
+  },
+
+  drawData(){
+    const canvas = $("#favorite")[0];
+    const ctx = canvas.getContext('2d');
+
+    const checked = $(".vertex .chk");
+    const deg = 360/Favorite.vertex;
+    const data = Favorite.data[Favorite.nowSelect];
+    
+    ctx.beginPath();
+      checked.each(function(i){
+        const idx = $(this).index();
+        const radius = 300 * data[Favorite.en[idx]]/100;
+        const [x, y] = [
+          Math.cos(radian(deg * i)) * radius + 400,
+          Math.sin(radian(deg * i)) * radius + 350
+        ]
+        
+        if(i == 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      })
+    ctx.closePath();
+
+    ctx.fillStyle = "#ffb7005f"
+    ctx.lineWidth = "2"
+    ctx.stroke();
+    ctx.fill();
+  },
+
+  changeAttraction(e){
+    Favorite.nowSelect = $(e.target).index();
+
+    $(".favorite .label_box .chk").removeClass("chk");
+    $(e.target).addClass("chk");
+
+    Favorite.reDraw()
+  },
+
+  changeVertex(e){
+    if($(e.target).hasClass("chk")){
+      $(e.target).removeClass("chk")
+    }else{
+      $(e.target).addClass("chk")
+    }
+
+    Favorite.vertex = $(".vertex .chk").length
+
+    if(Favorite.vertex < 3){
+      Favorite.vertex = 3;
+      $(e.target).addClass("chk")
+      alert("항목은 3개 이상 선택해주세요.");
+    }
+
+    Favorite.reDraw()
+  },
+
+  reDraw(){
+    const canvas = $("#favorite")[0];
+    const ctx = canvas.getContext('2d');
+
+    ctx.clearRect(0, 0, 800, 700)
+
+    Favorite.drawLine();
+    Favorite.drawText();
+    Favorite.drawData();
+  }
+
+}
+
+function radian(deg){
+  return deg * (Math.PI/180);
+}
+
+const Modal = {
+  template : (target) => $($("template")[0].content).find(`.${target}_modal`).clone(),
+
+  open(target){
+    $("body").css("overflow", "hidden");
+
+    $(".modal")
+      .addClass("open")
+      .html(Modal.template(target));
+  },
+
+  close(){
+    $("body").css("overflow", "");
+
+    $(".modal")
+      .removeClass("open")
+      .html("");
+  }
 }
 
 $(() => App.init());

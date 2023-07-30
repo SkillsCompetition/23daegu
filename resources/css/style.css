@@ -799,3 +799,22 @@ table td{
 .mapCon #main_map{
   transition: transform .4s, transform-origin 0s;
 }
+
+.favorite .label_box,
+.favorite .vertex{
+  gap: 1rem;
+}
+
+.favorite .label_box div,
+.favorite .vertex div{
+  padding: .5rem 1.1rem;
+  background-color: #e2e2e2;
+  color: gray;
+  border-radius: 5px;
+}
+
+.favorite .label_box div.chk,
+.favorite .vertex div.chk{
+  background-color: #ffb700;
+  color: #222;
+}
