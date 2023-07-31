@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="resources/js/jquery.js"></script>
+  <script src="resources/js/script.js"></script>
+  <link rel="stylesheet" href="resources/css/style.css">
+  <title>Document</title>
+</head>
+<body>
+
+  <!-- 헤더 -->
+  <header id="header">
+    <div class="wrap flex jcsb aic">
+      <div class="logo_box">
+        <a href="index.html"><img src="resources/img/logo.png" alt="#" title="#" class="logo"></a>
+
+      </div>
+
+      <div class="menu_nav flex">
+        <a href="#">mypage</a>
+        <a href="sub2.html">명소알아보기</a>
+        <a href="sub.html">셔틀버스투어</a>
+      </div>
+
+      <div class="utility flex jcfe">
+        <div class="btn_box">
+          <div class="btn">로그인</div>
+          <div class="btn">회원가입</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="header_emp"></div>
+
+  <!-- 콘텐츠 박스 -->
+
+
+
+
+
+
+
+  <div class="content">
+
+    <div class="mapCon_section">
+      <div class="wrap">
+        <div class="title">
+          <h1>지도</h1>
+          <div class="line"></div>
+          <p>명소의 위치를 상세히 알아보세요</p>
+        </div>
+
+        <div class="mapCon flex">
+          <div class="maps">
+            <div>
+              <canvas width="2800" height="2800" id="main_map"></canvas>
+            </div>
+            <canvas width="2800" height="2800" id="load_map" hidden></canvas>
+          </div>
+
+          <div class="list col-flex">
+            <div class="btn_box full">
+              <div data-zoom="0" class="mapZoom btn chk">5km</div>
+              <div data-zoom="1" class="mapZoom btn">3km</div>
+              <div data-zoom="2" class="mapZoom btn">500m</div>
+            </div>
+
+            <hr>
+
+            <div class="util full">
+              <div class="btn toggleIsView" onclick="Map.list.viewAdded(true)">추가된 명소만 보기</div>
+              <div class="btn toggleIsView" style="display: none;" onclick="Map.list.viewAdded(false)">모든 명소 보기</div>
+              <div class="btn" onclick="Map.list.moveUserPos()">현 위치</div>
+              <div class="btn" onclick="Map.point.start()">거리재기</div>
+              <div class="btn" onclick="Map.download()">다운로드</div>
+            </div>
+
+            <div class="btn" onclick="Favorite.open()">즐겨찾기</div>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>이름</th>
+                  <th>별점</th>
+                  <th>방문자</th>
+                  <th>비고</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <canvas id="download" width="700" height="700" hidden></canvas>
+
+  <div class="modal"></div>
+
+  <template>
+
+    <div class="favorite_modal">
+      <div class="flex jcsb aic">
+        <h3>즐겨찾기</h3>
+        <div class="btn tomato" onclick="Modal.close()">닫기</div>
+      </div>
+
+      <hr>
+
+      <div class="inputs favorite">
+
+        <div class="label_box flex">
+
+        </div>
+
+        <div class="flex jcc aic">
+          <canvas id="favorite" height="700" width="800"></canvas>
+        </div>
+
+        <div class="vertex flex">
+          
+        </div>
+
+      </div>
+    </div>
+
+  </template>
+
+  <!-- 푸터 -->
+  <footer>
+    <div class="wrap flex jcsb">
+      <p>
+        Call: 1422-36 <br>
+        Email: help@cheonan.tour <br>
+        Address: (31162) 충남 천안시 서북구 번영로 156 <br> <br>
+        Copyrightⓒ Cheonan-Si. All rights reserved.</p>
+
+      <a href="#"><img src="resources/img/logo.png" alt="#" title="#" class="logo"></a>
+    </div>
+  </footer>
+  
+</body>
+</html>
