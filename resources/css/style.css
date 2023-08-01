@@ -46,6 +46,7 @@ img{
   color: #222;
   font-weight: bold;
   cursor: pointer;
+  border: none;
 }
 
 a, label, button{
@@ -53,7 +54,7 @@ a, label, button{
 }
 
 .btn_box{
-  display: flex;
+  display: inline-flex;
   gap: .5rem;
 }
 
@@ -817,4 +818,202 @@ table td{
 .favorite .vertex div.chk{
   background-color: #ffb700;
   color: #222;
+}
+
+.inputs{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login_section .wrap,
+.join_section .wrap{
+  width: 400px;
+}
+
+.login_section label,
+.join_section label{
+  min-width: 81px;
+  text-align: center;
+}
+
+.mypage .label_box{
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mypage .label_box a{
+  padding: .5rem 1.1rem;
+  background-color: #e2e2e2;
+  color: gray;
+  border-radius: 5px;
+  transition: .2s;
+}
+
+.mypage .label_box .chk{
+  background-color: #ffb700;
+  color: #222;
+}
+
+input[type=file]{
+  padding-top: 8px;
+}
+
+.bus label{
+  min-width: 115px;
+  text-align: center;
+}
+
+.list .top{
+  gap: 1rem;
+}
+
+.list img{
+  height: 300px;
+  border-radius: 5px;
+}
+
+.list .top > *{
+  width: 50%;
+}
+
+.list table{
+  height: 100%;
+}
+
+.list table td:nth-child(2){
+  text-align: left;
+}
+
+.chair .bottom .box,
+.list .bottom .box{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.chair .bottom h3,
+.list .bottom h3{
+  margin-top: 2rem;
+  margin-bottom: .5rem;  
+}
+
+.chair .bottom .box div,
+.list .bottom .box div{
+  padding: .5rem 1.1rem;
+  background-color: #e2e2e2;
+  color: gray;
+  border-radius: 5px;
+  transition: .2s;
+}
+
+.chair .bottom .box div.chk,
+.list .bottom .box div.chk{
+  background-color: tomato;
+  color: #fff;
+}
+
+.list .bottom .box div.green{
+  background-color: green;
+  color: #fff;
+}
+
+.list a{
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.reserve{
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 1rem;
+}
+
+.admin h3,
+.reserve h3{
+  margin-bottom: .5rem;
+}
+
+.admin td{
+  height: 100px;
+}
+
+.admin img{
+  width: 140px;
+}
+
+.admin .input_box{
+  width: 250px;
+}
+
+.admin td:nth-child(6){
+  width: 400px;
+}
+
+.reservation img{
+  height: 100px;
+}
+
+.chair_modal{
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.chair_modal .main{
+  padding: 40px;
+}
+
+.chair_modal form > .btn_box{
+  width: 100%;
+  gap: 0;
+}
+
+.chair_modal form > .btn_box .btn{
+  width: 100%;
+  height: 60px;
+  border-radius: 0;
+  transition: .2s;
+}
+
+.chair_modal form > .btn_box .btn:nth-child(1){
+  border-right: 1px solid #eca900;
+}
+
+.chair_modal form > .btn_box .btn:hover{
+  background-color: #ffb700df;
+}
+
+.chair_modal hr{
+  margin: 16px 0;
+}
+
+.chair_modal .container{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.chair_modal .container .item{
+  padding: 20px;
+  box-shadow: 0 0 1rem #0001;
+  border-radius: 5px;
+  gap: 2rem;
+}
+
+.buy table .btn_box{
+  width: 250px;
+  margin: 0 auto;
+}
+
+.buy{
+  gap: 1rem;
+}
+
+.btn.green{
+  background-color: green;
+  color: #fff;
+}
+
+.user img{
+  height: 100px;
 }
