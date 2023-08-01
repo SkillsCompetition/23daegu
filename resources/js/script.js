@@ -1,12 +1,23 @@
 const dd = console.log;
 
+function phoneVali(target){
+  const value = target.value
+                  .replace(/\D/g, "").substring(0, 11)
+                  .replace(/(\d{3})(\d{0,4})(\d{0,4})/, "$1-$2-$3")
+                  .replace(/-{1,2}$/, "")
+
+  $(target).val(value);
+}
+
 const App = {
 
   init(){
     App.hook();
 
-    Map.init();
-    Favorite.init();
+    if(location.pathname.includes("sub2")){
+      Map.init();
+      Favorite.init();
+    }
   },
 
   hook(){
